@@ -1,0 +1,19 @@
+
+version: "3.8"
+
+services:
+  batmon-ha:
+    build:
+      context: .
+    container_name: batmon-ha
+    restart: unless-stopped
+    network_mode: host
+    environment:
+      - MQTT_HOST=192.168.100.88
+      - MQTT_PORT=1883
+      - MQTT_USER=mqtt
+      - MQTT_PASSWORD=********
+      - MQTT_TOPIC=batmon
+    privileged: true
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
